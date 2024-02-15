@@ -1,0 +1,21 @@
+{
+  "name": "typeapi/model",
+  "description": "This library contains models to represent a TypeAPI or TypeSchema specification",
+  "homepage": "https://typeapi.org/",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Christoph Kappestein",
+      "email": "christoph.kappestein@gmail.com",
+      "homepage": "https://chrisk.app/"
+    }
+  ],
+  "require-dev": {
+    "vimeo/psalm": "^5.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "TypeAPI\\Model\\": "src/"
+    }
+  }
+}
