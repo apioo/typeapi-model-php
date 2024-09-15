@@ -2,12 +2,15 @@
   "type": "model-php",
   "require": {
     "typehub/typeapi": {
-      "target": "./src",
-      "namespace": "TypeAPI\\Model"
+      "target": "./src/API",
+      "namespace": "TypeAPI\\Model\\API",
+      "mapping": {
+        "typeschema": "TypeAPI\\Model\\Schema"
+      }
     },
     "typehub/typeschema": {
-      "target": "./src",
-      "namespace": "TypeAPI\\Model"
+      "target": "./src/Schema",
+      "namespace": "TypeAPI\\Model\\Schema"
     }
   }
 }

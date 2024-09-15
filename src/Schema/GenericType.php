@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace TypeAPI\Model;
+namespace TypeAPI\Model\Schema;
 
 use PSX\Schema\Attribute\Description;
 use PSX\Schema\Attribute\Key;

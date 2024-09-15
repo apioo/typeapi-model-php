@@ -2,12 +2,12 @@
 
 declare(strict_types = 1);
 
-namespace TypeAPI\Model;
+namespace TypeAPI\Model\Schema;
 
 use PSX\Schema\Attribute\Description;
 
-#[Description('Represents an any type')]
-class AnyType extends CommonType implements \JsonSerializable, \PSX\Record\RecordableInterface
+#[Description('Represents an integer type')]
+class IntegerType extends NumberType implements \JsonSerializable, \PSX\Record\RecordableInterface
 {
     #[Description('')]
     protected ?string $type = null;
