@@ -13,6 +13,8 @@ class Argument implements \JsonSerializable, \PSX\Record\RecordableInterface
     protected ?string $in = null;
     #[Description('')]
     protected BooleanType|NumberType|IntegerType|StringType|ReferenceType|null $schema = null;
+    #[Description('In case the data is not a JSON payload which you can describe with a schema you can select a content type')]
+    protected ?string $contentType = null;
     #[Description('Optional the actual path, query or header name. If not provided the key of the argument map is used')]
     protected ?string $name = null;
     public function setIn(?string $in) : void
@@ -31,6 +33,14 @@ class Argument implements \JsonSerializable, \PSX\Record\RecordableInterface
     {
         return $this->schema;
     }
+    public function setContentType(?string $contentType) : void
+    {
+        $this->contentType = $contentType;
+    }
+    public function getContentType() : ?string
+    {
+        return $this->contentType;
+    }
     public function setName(?string $name) : void
     {
         $this->name = $name;
@@ -45,6 +55,7 @@ class Argument implements \JsonSerializable, \PSX\Record\RecordableInterface
         $record = new \PSX\Record\Record();
         $record->put('in', $this->in);
         $record->put('schema', $this->schema);
+        $record->put('contentType', $this->contentType);
         $record->put('name', $this->name);
         return $record;
     }
