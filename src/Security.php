@@ -2,14 +2,21 @@
 
 declare(strict_types = 1);
 
-namespace TypeAPI\Model\Schema;
+namespace TypeAPI\Model;
 
+use PSX\Schema\Attribute\DerivedType;
 use PSX\Schema\Attribute\Description;
+use PSX\Schema\Attribute\Discriminator;
 
-#[Description('Represents an any type')]
-class AnyType extends CommonType implements \JsonSerializable, \PSX\Record\RecordableInterface
+#[Description('')]
+#[Discriminator('type')]
+#[DerivedType('SecurityHttpBasic', 'httpBasic')]
+#[DerivedType('SecurityHttpBearer', 'httpBearer')]
+#[DerivedType('SecurityApiKey', 'apiKey')]
+#[DerivedType('SecurityOAuth2', 'oauth2')]
+abstract class Security implements \JsonSerializable, \PSX\Record\RecordableInterface
 {
-    #[Description('')]
+    #[Description('The global security type of the API must be one of: httpBasic, httpBearer, apiKey or oauth2')]
     protected ?string $type = null;
     public function setType(?string $type) : void
     {
@@ -22,7 +29,7 @@ class AnyType extends CommonType implements \JsonSerializable, \PSX\Record\Recor
     public function toRecord() : \PSX\Record\RecordInterface
     {
         /** @var \PSX\Record\Record<mixed> $record */
-        $record = parent::toRecord();
+        $record = new \PSX\Record\Record();
         $record->put('type', $this->type);
         return $record;
     }

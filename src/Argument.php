@@ -2,32 +2,34 @@
 
 declare(strict_types = 1);
 
-namespace TypeAPI\Model\API;
+namespace TypeAPI\Model;
 
 use PSX\Schema\Attribute\Description;
 
 #[Description('')]
-class Response implements \JsonSerializable, \PSX\Record\RecordableInterface
+class Argument implements \JsonSerializable, \PSX\Record\RecordableInterface
 {
-    #[Description('The associated HTTP response code. For error responses it is possible to use the 499, 599 or 999 status code to catch all errors')]
-    protected ?int $code = null;
+    #[Description('The location where the value can be found either in the path, query, header or body. If you choose path, then your path must have a fitting variable path fragment')]
+    protected ?string $in = null;
     #[Description('')]
-    protected ?\TypeAPI\Model\Schema\ReferenceType $schema = null;
+    protected ?PropertyType $schema = null;
     #[Description('In case the data is not a JSON payload which you can describe with a schema you can select a content type')]
     protected ?string $contentType = null;
-    public function setCode(?int $code) : void
+    #[Description('Optional the actual path, query or header name. If not provided the key of the argument map is used')]
+    protected ?string $name = null;
+    public function setIn(?string $in) : void
     {
-        $this->code = $code;
+        $this->in = $in;
     }
-    public function getCode() : ?int
+    public function getIn() : ?string
     {
-        return $this->code;
+        return $this->in;
     }
-    public function setSchema(?\TypeAPI\Model\Schema\ReferenceType $schema) : void
+    public function setSchema(?PropertyType $schema) : void
     {
         $this->schema = $schema;
     }
-    public function getSchema() : ?\TypeAPI\Model\Schema\ReferenceType
+    public function getSchema() : ?PropertyType
     {
         return $this->schema;
     }
@@ -39,13 +41,22 @@ class Response implements \JsonSerializable, \PSX\Record\RecordableInterface
     {
         return $this->contentType;
     }
+    public function setName(?string $name) : void
+    {
+        $this->name = $name;
+    }
+    public function getName() : ?string
+    {
+        return $this->name;
+    }
     public function toRecord() : \PSX\Record\RecordInterface
     {
         /** @var \PSX\Record\Record<mixed> $record */
         $record = new \PSX\Record\Record();
-        $record->put('code', $this->code);
+        $record->put('in', $this->in);
         $record->put('schema', $this->schema);
         $record->put('contentType', $this->contentType);
+        $record->put('name', $this->name);
         return $record;
     }
     public function jsonSerialize() : object

@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace TypeAPI\Model\API;
+namespace TypeAPI\Model;
 
 use PSX\Schema\Attribute\Description;
 
@@ -27,7 +27,7 @@ class Operation implements \JsonSerializable, \PSX\Record\RecordableInterface
     protected ?array $throws = null;
     #[Description('A short description of this operation. The generated code will include this description at the method so it is recommend to use simple alphanumeric characters and no new lines')]
     protected ?string $description = null;
-    #[Description('Indicates the stability of this operation. This is based on the stability index from the nodejs project: 0 - Deprecated, 1 - Experimental, 2 - Stable, 3 - Legacy. If not explicit provided the operation is by default experimental.')]
+    #[Description('Indicates the stability of this operation: 0 - Deprecated, 1 - Experimental, 2 - Stable, 3 - Legacy. If not explicit provided the operation is by default experimental.')]
     protected ?int $stability = null;
     /**
      * @var array<string>|null
@@ -65,10 +65,16 @@ class Operation implements \JsonSerializable, \PSX\Record\RecordableInterface
     {
         return $this->return;
     }
+    /**
+     * @param \PSX\Record\Record<Argument>|null $arguments
+     */
     public function setArguments(?\PSX\Record\Record $arguments) : void
     {
         $this->arguments = $arguments;
     }
+    /**
+     * @return \PSX\Record\Record<Argument>|null
+     */
     public function getArguments() : ?\PSX\Record\Record
     {
         return $this->arguments;

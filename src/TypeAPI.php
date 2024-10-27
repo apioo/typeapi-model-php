@@ -2,12 +2,12 @@
 
 declare(strict_types = 1);
 
-namespace TypeAPI\Model\API;
+namespace TypeAPI\Model;
 
 use PSX\Schema\Attribute\Description;
 
-#[Description('The TypeApi Root')]
-class TypeApi extends \TypeAPI\Model\Schema\TypeSchema implements \JsonSerializable, \PSX\Record\RecordableInterface
+#[Description('The TypeAPI Root')]
+class TypeAPI extends TypeSchema implements \JsonSerializable, \PSX\Record\RecordableInterface
 {
     #[Description('Optional the base url of the service, if provided the user does not need to provide a base url for your client')]
     protected ?string $baseUrl = null;
@@ -34,10 +34,16 @@ class TypeApi extends \TypeAPI\Model\Schema\TypeSchema implements \JsonSerializa
     {
         return $this->security;
     }
+    /**
+     * @param \PSX\Record\Record<Operation>|null $operations
+     */
     public function setOperations(?\PSX\Record\Record $operations) : void
     {
         $this->operations = $operations;
     }
+    /**
+     * @return \PSX\Record\Record<Operation>|null
+     */
     public function getOperations() : ?\PSX\Record\Record
     {
         return $this->operations;
