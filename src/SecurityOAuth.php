@@ -8,8 +8,6 @@ use PSX\Schema\Attribute\Description;
 
 class SecurityOAuth extends Security implements \JsonSerializable, \PSX\Record\RecordableInterface
 {
-    #[Description('The OAuth2 token endpoint')]
-    protected ?string $tokenUrl = null;
     #[Description('Optional the OAuth2 authorization endpoint')]
     protected ?string $authorizationUrl = null;
     /**
@@ -17,14 +15,8 @@ class SecurityOAuth extends Security implements \JsonSerializable, \PSX\Record\R
      */
     #[Description('Optional OAuth2 scopes')]
     protected ?array $scopes = null;
-    public function setTokenUrl(?string $tokenUrl) : void
-    {
-        $this->tokenUrl = $tokenUrl;
-    }
-    public function getTokenUrl() : ?string
-    {
-        return $this->tokenUrl;
-    }
+    #[Description('The OAuth2 token endpoint')]
+    protected ?string $tokenUrl = null;
     public function setAuthorizationUrl(?string $authorizationUrl) : void
     {
         $this->authorizationUrl = $authorizationUrl;
@@ -47,13 +39,21 @@ class SecurityOAuth extends Security implements \JsonSerializable, \PSX\Record\R
     {
         return $this->scopes;
     }
+    public function setTokenUrl(?string $tokenUrl) : void
+    {
+        $this->tokenUrl = $tokenUrl;
+    }
+    public function getTokenUrl() : ?string
+    {
+        return $this->tokenUrl;
+    }
     public function toRecord() : \PSX\Record\RecordInterface
     {
         /** @var \PSX\Record\Record<mixed> $record */
         $record = parent::toRecord();
-        $record->put('tokenUrl', $this->tokenUrl);
         $record->put('authorizationUrl', $this->authorizationUrl);
         $record->put('scopes', $this->scopes);
+        $record->put('tokenUrl', $this->tokenUrl);
         return $record;
     }
     public function jsonSerialize() : object

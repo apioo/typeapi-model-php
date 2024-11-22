@@ -11,7 +11,7 @@
     }
   ],
   "require": {
-    "psx/schema": "^7.0"
+    "typeschema/model": "^0.1"
   },
   "require-dev": {
     "vimeo/psalm": "^5.0"

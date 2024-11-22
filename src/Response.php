@@ -14,7 +14,7 @@ class Response implements \JsonSerializable, \PSX\Record\RecordableInterface
     #[Description('In case the data is not a JSON payload which you can describe with a schema you can select a content type')]
     protected ?string $contentType = null;
     #[Description('')]
-    protected ?PropertyType $schema = null;
+    protected ?\TypeSchema\Model\PropertyType $schema = null;
     public function setCode(?int $code) : void
     {
         $this->code = $code;
@@ -31,11 +31,11 @@ class Response implements \JsonSerializable, \PSX\Record\RecordableInterface
     {
         return $this->contentType;
     }
-    public function setSchema(?PropertyType $schema) : void
+    public function setSchema(?\TypeSchema\Model\PropertyType $schema) : void
     {
         $this->schema = $schema;
     }
-    public function getSchema() : ?PropertyType
+    public function getSchema() : ?\TypeSchema\Model\PropertyType
     {
         return $this->schema;
     }
