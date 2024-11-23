@@ -1,6 +1,6 @@
 {
   "name": "typeapi/model",
-  "description": "This library contains models to represent a TypeAPI or TypeSchema specification",
+  "description": "This library contains models to represent a TypeAPI specification",
   "homepage": "https://typeapi.org/",
   "license": "MIT",
   "authors": [
