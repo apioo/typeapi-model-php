@@ -29,13 +29,8 @@ class Operation implements \JsonSerializable, \PSX\Record\RecordableInterface
      */
     #[Description('An array of scopes which are required to access this operation')]
     protected ?array $security = null;
-    #[Description('Indicates the stability of this operation: 0 - Deprecated, 1 - Experimental, 2 - Stable, 3 - Legacy. If not explicit provided the operation is by default experimental.')]
+    #[Description('Indicates the stability of this operation: 0 - Deprecated, 1 - Experimental, 2 - Stable, 3 - Legacy. If not explicit provided the operation is by default experimental')]
     protected ?int $stability = null;
-    /**
-     * @var array<string>|null
-     */
-    #[Description('Optional an array of tags to group operations')]
-    protected ?array $tags = null;
     /**
      * @var array<Response>|null
      */
@@ -118,20 +113,6 @@ class Operation implements \JsonSerializable, \PSX\Record\RecordableInterface
         return $this->stability;
     }
     /**
-     * @param array<string>|null $tags
-     */
-    public function setTags(?array $tags) : void
-    {
-        $this->tags = $tags;
-    }
-    /**
-     * @return array<string>|null
-     */
-    public function getTags() : ?array
-    {
-        return $this->tags;
-    }
-    /**
      * @param array<Response>|null $throws
      */
     public function setThrows(?array $throws) : void
@@ -157,7 +138,6 @@ class Operation implements \JsonSerializable, \PSX\Record\RecordableInterface
         $record->put('return', $this->return);
         $record->put('security', $this->security);
         $record->put('stability', $this->stability);
-        $record->put('tags', $this->tags);
         $record->put('throws', $this->throws);
         return $record;
     }
