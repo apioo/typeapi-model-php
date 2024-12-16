@@ -6,14 +6,14 @@ namespace TypeAPI\Model;
 
 use PSX\Schema\Attribute\Description;
 
-#[Description('')]
+#[Description('Describes the response of the operation')]
 class Response implements \JsonSerializable, \PSX\Record\RecordableInterface
 {
     #[Description('The associated HTTP response code. For error responses it is possible to use the 499, 599 or 999 status code to catch all errors')]
     protected ?int $code = null;
     #[Description('In case the data is not a JSON payload which you can describe with a schema you can select a content type')]
     protected ?string $contentType = null;
-    #[Description('')]
+    #[Description('Schema of the JSON payload')]
     protected ?\TypeSchema\Model\PropertyType $schema = null;
     public function setCode(?int $code) : void
     {

@@ -6,7 +6,7 @@ namespace TypeAPI\Model;
 
 use PSX\Schema\Attribute\Description;
 
-#[Description('')]
+#[Description('Describes arguments of the operation')]
 class Argument implements \JsonSerializable, \PSX\Record\RecordableInterface
 {
     #[Description('In case the data is not a JSON payload which you can describe with a schema you can select a content type')]
@@ -15,7 +15,7 @@ class Argument implements \JsonSerializable, \PSX\Record\RecordableInterface
     protected ?string $in = null;
     #[Description('Optional the actual path, query or header name. If not provided the key of the argument map is used')]
     protected ?string $name = null;
-    #[Description('')]
+    #[Description('Schema of the JSON payload')]
     protected ?\TypeSchema\Model\PropertyType $schema = null;
     public function setContentType(?string $contentType) : void
     {
