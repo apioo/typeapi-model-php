@@ -11,9 +11,9 @@ class Response implements \JsonSerializable, \PSX\Record\RecordableInterface
 {
     #[Description('The HTTP status code associated with this response. Wildcard error status codes like 499, 599, or 999 can be used to catch all errors.')]
     protected ?int $code = null;
-    #[Description('The content type to use when the response body cannot be described by a JSON schema.')]
+    #[Description('The content type to use when the response body cannot be described by a TypeSchema.')]
     protected ?string $contentType = null;
-    #[Description('JSON schema describing the structure of the response payload.')]
+    #[Description('TypeSchema describing the structure of the response payload.')]
     protected ?\TypeSchema\Model\PropertyType $schema = null;
     public function setCode(?int $code): void
     {

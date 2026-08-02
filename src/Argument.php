@@ -9,13 +9,13 @@ use PSX\Schema\Attribute\Description;
 #[Description('Describes an argument passed to an operation.')]
 class Argument implements \JsonSerializable, \PSX\Record\RecordableInterface
 {
-    #[Description('The content type to use when the payload cannot be described by a JSON schema.')]
+    #[Description('The content type to use when the payload cannot be described by a TypeSchema.')]
     protected ?string $contentType = null;
     #[Description('Specifies where the argument value is located: path, query, header, or body. If set to path, the operation path must include a matching path variable.')]
     protected ?string $in = null;
     #[Description('Optional name of the parameter in the path, query, or header. If omitted, the key of the arguments map is used.')]
     protected ?string $name = null;
-    #[Description('JSON schema describing the structure of the argument payload.')]
+    #[Description('TypeSchema describing the structure of the argument payload.')]
     protected ?\TypeSchema\Model\PropertyType $schema = null;
     public function setContentType(?string $contentType): void
     {
