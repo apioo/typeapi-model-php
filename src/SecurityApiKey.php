@@ -8,27 +8,30 @@ use PSX\Schema\Attribute\Description;
 
 class SecurityApiKey extends Security implements \JsonSerializable, \PSX\Record\RecordableInterface
 {
-    #[Description('Must be either "header" or "query"')]
+    #[Description('The location of the API key. Must be either "header" or "query".')]
     protected ?string $in = null;
-    #[Description('The name of the header or query parameter i.e. "X-Api-Key"')]
+    #[Description('The name of the header or query parameter (e.g., "X-Api-Key").')]
     protected ?string $name = null;
-    public function setIn(?string $in) : void
+    public function setIn(?string $in): void
     {
         $this->in = $in;
     }
-    public function getIn() : ?string
+    public function getIn(): ?string
     {
         return $this->in;
     }
-    public function setName(?string $name) : void
+    public function setName(?string $name): void
     {
         $this->name = $name;
     }
-    public function getName() : ?string
+    public function getName(): ?string
     {
         return $this->name;
     }
-    public function toRecord() : \PSX\Record\RecordInterface
+    /**
+     * @return \PSX\Record\RecordInterface<mixed>
+     */
+    public function toRecord(): \PSX\Record\RecordInterface
     {
         /** @var \PSX\Record\Record<mixed> $record */
         $record = parent::toRecord();
@@ -36,7 +39,7 @@ class SecurityApiKey extends Security implements \JsonSerializable, \PSX\Record\
         $record->put('name', $this->name);
         return $record;
     }
-    public function jsonSerialize() : object
+    public function jsonSerialize(): object
     {
         return (object) $this->toRecord()->getAll();
     }

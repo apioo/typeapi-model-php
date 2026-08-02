@@ -8,46 +8,49 @@ use PSX\Schema\Attribute\Description;
 
 class SecurityOAuth extends Security implements \JsonSerializable, \PSX\Record\RecordableInterface
 {
-    #[Description('Optional the OAuth2 authorization endpoint')]
+    #[Description('Optional OAuth2 authorization endpoint URL.')]
     protected ?string $authorizationUrl = null;
     /**
      * @var array<string>|null
      */
-    #[Description('Optional OAuth2 scopes')]
+    #[Description('Optional OAuth2 scopes required by default.')]
     protected ?array $scopes = null;
-    #[Description('The OAuth2 token endpoint')]
+    #[Description('The OAuth2 token endpoint URL.')]
     protected ?string $tokenUrl = null;
-    public function setAuthorizationUrl(?string $authorizationUrl) : void
+    public function setAuthorizationUrl(?string $authorizationUrl): void
     {
         $this->authorizationUrl = $authorizationUrl;
     }
-    public function getAuthorizationUrl() : ?string
+    public function getAuthorizationUrl(): ?string
     {
         return $this->authorizationUrl;
     }
     /**
      * @param array<string>|null $scopes
      */
-    public function setScopes(?array $scopes) : void
+    public function setScopes(?array $scopes): void
     {
         $this->scopes = $scopes;
     }
     /**
      * @return array<string>|null
      */
-    public function getScopes() : ?array
+    public function getScopes(): ?array
     {
         return $this->scopes;
     }
-    public function setTokenUrl(?string $tokenUrl) : void
+    public function setTokenUrl(?string $tokenUrl): void
     {
         $this->tokenUrl = $tokenUrl;
     }
-    public function getTokenUrl() : ?string
+    public function getTokenUrl(): ?string
     {
         return $this->tokenUrl;
     }
-    public function toRecord() : \PSX\Record\RecordInterface
+    /**
+     * @return \PSX\Record\RecordInterface<mixed>
+     */
+    public function toRecord(): \PSX\Record\RecordInterface
     {
         /** @var \PSX\Record\Record<mixed> $record */
         $record = parent::toRecord();
@@ -56,7 +59,7 @@ class SecurityOAuth extends Security implements \JsonSerializable, \PSX\Record\R
         $record->put('tokenUrl', $this->tokenUrl);
         return $record;
     }
-    public function jsonSerialize() : object
+    public function jsonSerialize(): object
     {
         return (object) $this->toRecord()->getAll();
     }
