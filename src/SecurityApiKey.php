@@ -6,6 +6,7 @@ namespace TypeAPI\Model;
 
 use PSX\Schema\Attribute\Description;
 
+#[Description('Describes API key authentication passed via a header or query parameter.')]
 class SecurityApiKey extends Security implements \JsonSerializable, \PSX\Record\RecordableInterface
 {
     #[Description('The location of the API key. Must be either "header" or "query".')]

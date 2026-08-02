@@ -6,6 +6,7 @@ namespace TypeAPI\Model;
 
 use PSX\Schema\Attribute\Description;
 
+#[Description('Describes OAuth 2.0 authentication, defining endpoints and scopes required by the API.')]
 class SecurityOAuth extends Security implements \JsonSerializable, \PSX\Record\RecordableInterface
 {
     #[Description('Optional OAuth2 authorization endpoint URL.')]
